@@ -526,77 +526,114 @@
 
         /* Skills Section */
         .skills-section {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
             padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
         }
 
         .skills-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .skills-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
 
         .skill-tabs {
             display: flex;
             gap: 1rem;
-            margin-top: 1.5rem;
         }
 
         .tab-btn {
             background: rgba(255, 255, 255, 0.05);
-            border: none;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 0.8rem 1.5rem;
             border-radius: 12px;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            color: #fff;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-        }
-
-        .tab-btn:hover {
-            background: rgba(107, 70, 193, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         .tab-btn.active {
             background: var(--purple);
-            transform: translateY(-2px);
+            border-color: transparent;
+            box-shadow: 0 0 20px rgba(157, 78, 221, 0.3);
         }
 
         .skill-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
             padding: 1.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
+            display: flex;
+            gap: 2rem;
         }
 
-        .skill-card:hover {
-            transform: translateX(10px);
-            background: rgba(107, 70, 193, 0.1);
-        }
-
-        .skill-info {
+        .skill-icon-wrapper {
+            position: relative;
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            justify-content: center;
+            border-radius: 15px;
+            background: linear-gradient(135deg, var(--purple), #2a1f62);
         }
 
         .skill-icon {
             font-size: 2rem;
-            color: var(--purple);
+            color: #fff;
+            z-index: 2;
+        }
+
+        .icon-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--purple);
+            filter: blur(15px);
+            opacity: 0.3;
+            border-radius: 15px;
         }
 
         .skill-details {
             flex: 1;
         }
 
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
         .skill-name {
-            font-size: 1.1rem;
-            color: white;
-            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .level-number {
+            color: var(--purple);
+            font-weight: 600;
+        }
+
+        .skill-progress-wrapper {
+            position: relative;
+            margin-bottom: 1rem;
         }
 
         .skill-progress {
@@ -604,30 +641,59 @@
             background: rgba(255, 255, 255, 0.1);
             border-radius: 4px;
             overflow: hidden;
-            position: relative;
         }
 
         .progress-bar {
+            width: 0;
             height: 100%;
-            background: linear-gradient(90deg, var(--purple), #9c7af0);
+            background: linear-gradient(90deg, var(--purple), #9d4edd);
             border-radius: 4px;
             position: relative;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .progress-glow {
             position: absolute;
             top: 0;
             right: 0;
-            width: 30px;
+            width: 20px;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3));
             animation: progressGlow 2s infinite;
         }
 
-        /* Animations */
+        .skill-tags {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .skill-tags span {
+            padding: 0.4rem 1rem;
+            background: rgba(157, 78, 221, 0.1);
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        /* Animações */
         @keyframes progressGlow {
             0% { transform: translateX(-100%); }
-            100% { transform: translateX(500%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Hover Effects */
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--purple);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-tags span:hover {
+            background: rgba(157, 78, 221, 0.2);
+            transform: translateY(-2px);
         }
 
         /* Responsive Design */
@@ -650,6 +716,216 @@
             .profile-image {
                 width: 150px;
                 height: 150px;
+            }
+        }
+
+        .tech-solutions-hub {
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .title-accent {
+            color: var(--purple);
+            opacity: 0.8;
+            font-family: "Playfair Display", serif;
+        }
+
+        .title-underline {
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                transparent,
+                var(--purple),
+                transparent
+            );
+            margin: 1rem auto;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .solution-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .card-inner {
+            padding: 2.5rem;
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(10px);
+        }
+
+        .service-icon-wrapper {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--purple), #2a1f62);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-icon i {
+            font-size: 2rem;
+            color: #fff;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+        }
+
+        .tech-orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            animation: orbit 20s linear infinite;
+        }
+
+        .orbit-line {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border: 1px dashed rgba(157, 78, 221, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .tech-pill {
+            position: absolute;
+            padding: 0.5rem 1rem;
+            background: rgba(157, 78, 221, 0.1);
+            border: 1px solid rgba(157, 78, 221, 0.3);
+            border-radius: 20px;
+            color: #fff;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .tech-pill:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
+        .tech-pill:nth-child(2) { bottom: 30%; right: 0; }
+        .tech-pill:nth-child(3) { bottom: 30%; left: 0; }
+
+        .service-title {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem 0;
+        }
+
+        .service-features li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .service-features li i {
+            color: var(--purple);
+            font-size: 1.1rem;
+        }
+
+        .tech-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: auto;
+        }
+
+        .tech-specs span {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        .card-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                circle at 50% 50%,
+                rgba(157, 78, 221, 0.1),
+                transparent 70%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Hover Effects */
+        .solution-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--purple);
+        }
+
+        .solution-card:hover .card-glow {
+            opacity: 1;
+        }
+
+        .solution-card:hover .tech-specs span {
+            background: rgba(157, 78, 221, 0.1);
+            border-color: var(--purple);
+        }
+
+        @keyframes orbit {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .solutions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-title {
+                font-size: 1.3rem;
             }
         }
     </style>
@@ -820,140 +1096,115 @@
                     </div>
 
 
-                        <div class="skill-content active" id="frontend">
-                            <div class="skill-card">
-                                <div class="skill-info">
-                                    <i class="fab fa-react skill-icon"></i>
+                        <div class="skills-section">
+                            <div class="skills-header">
+                                <h3 class="skills-title gradient-purple">Minhas Habilidades</h3>
+                            </div>
+
+                            <!-- Conteúdo Frontend -->
+                            <div class="skill-content active" id="frontend">
+                                <div class="skill-card" data-tilt data-tilt-max="5">
+                                    <div class="skill-icon-wrapper">
+                                        <i class="fab fa-react skill-icon"></i>
+                                        <div class="icon-glow"></div>
+                                    </div>
                                     <div class="skill-details">
-                                        <span class="skill-name">React</span>
-                                        <div class="skill-level">
-                                            <div class="skill-progress">
-                                                <div class="progress-bar" style="width: 90%">
-                                                    <span class="progress-glow"></span>
-                                                </div>
-                                            </div>
+                                        <div class="skill-header">
+                                            <span class="skill-name">React</span>
                                             <span class="level-number">90%</span>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="skill-tags">
-                                    <span>Next.js</span>
-                                    <span>Redux</span>
-                                    <span>Hooks</span>
-                                </div>
-                            </div>
-
-                            <div class="skill-card">
-                                <div class="skill-info">
-                                    <i class="fab fa-js-square skill-icon"></i>
-                                    <div class="skill-details">
-                                        <span class="skill-name">JavaScript</span>
-                                        <div class="skill-level">
+                                        <div class="skill-progress-wrapper">
                                             <div class="skill-progress">
-                                                <div class="progress-bar" style="width: 95%">
-                                                    <span class="progress-glow"></span>
+                                                <div class="progress-bar" data-progress="90">
+                                                    <div class="progress-glow"></div>
                                                 </div>
                                             </div>
-                                            <span class="level-number">95%</span>
+                                        </div>
+                                        <div class="skill-tags">
+                                            <span>Next.js</span>
+                                            <span>Redux</span>
+                                            <span>Hooks</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="skill-tags">
-                                    <span>ES6+</span>
-                                    <span>TypeScript</span>
-                                    <span>jQuery</span>
-                                </div>
-                            </div>
-
-                            
-
-                        <div class="skill-content" id="backend">
-                            <div class="skill-card">
-                                <div class="skill-info">
-                                    <i class="fab fa-node-js skill-icon"></i>
-                                    <div class="skill-details">
-                                        <span class="skill-name">Node.js</span>
-                                        <div class="skill-level">
-                                            <div class="skill-progress">
-                                                <div class="progress-bar" style="width: 90%">
-                                                    <span class="progress-glow"></span>
+                                <div class="skill-content active" id="frontend">
+                                    <div class="skill-card" data-tilt data-tilt-max="5">
+                                        <div class="skill-icon-wrapper">
+                                            <i class="fab fa-js-square skill-icon"></i>
+                                            <div class="icon-glow"></div>
+                                        </div>
+                                        <div class="skill-details">
+                                            <div class="skill-header">
+                                                <span class="skill-name">JavaScript</span>
+                                                <span class="level-number">90%</span>
+                                            </div>
+                                            <div class="skill-progress-wrapper">
+                                                <div class="skill-progress">
+                                                    <div class="progress-bar" data-progress="90">
+                                                        <div class="progress-glow"></div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <span class="level-number">90%</span>
+                                            <div class="skill-tags">
+                                                <span>ES6+</span>
+                                                <span>TypeScript</span>
+                                                <span>jQuery</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="skill-tags">
-                                    <span>Express</span>
-                                    <span>NestJS</span>
-                                    <span>GraphQL</span>
-                                </div>
-                            </div>
-
-                            <div class="skill-card">
-                                <div class="skill-info">
-                                    <i class="fas fa-database skill-icon"></i>
-                                    <div class="skill-details">
-                                        <span class="skill-name">Bancos de Dados</span>
-                                        <div class="skill-level">
-                                            <div class="skill-progress">
-                                                <div class="progress-bar" style="width: 85%">
-                                                    <span class="progress-glow"></span>
+                                    <div class="skill-content active" id="frontend">
+                                        <div class="skill-card" data-tilt data-tilt-max="5">
+                                            <div class="skill-icon-wrapper">
+                                                <i class="fab fa-php skill-icon"></i>
+                                                <div class="icon-glow"></div>
+                                            </div>
+                                            <div class="skill-details">
+                                                <div class="skill-header">
+                                                    <span class="skill-name">PHP</span>
+                                                    <span class="level-number">90%</span>
+                                                </div>
+                                                <div class="skill-progress-wrapper">
+                                                    <div class="skill-progress">
+                                                        <div class="progress-bar" data-progress="90">
+                                                            <div class="progress-glow"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="skill-tags">
+                                                    <span>Wordpress</span>
+                                                    <span>Laravel</span>
+                                                    <span>API Rest</span>
                                                 </div>
                                             </div>
-                                            <span class="level-number">85%</span>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="skill-tags">
-                                    <span>MongoDB</span>
-                                    <span>PostgreSQL</span>
-                                    <span>Redis</span>
-                                </div>
-                            </div>
-
-                            <div class="skill-card">
-                                <div class="skill-info">
-                                    <i class="fab fa-php skill-icon"></i>
-                                    <div class="skill-details">
-                                        <span class="skill-name">PHP</span>
-                                        <div class="skill-level">
-                                            <div class="skill-progress">
-                                                <div class="progress-bar" style="width: 80%">
-                                                    <span class="progress-glow"></span>
+                                        <div class="skill-content active" id="frontend">
+                                            <div class="skill-card" data-tilt data-tilt-max="5">
+                                                <div class="skill-icon-wrapper">
+                                                    <i class="fas fa-database skill-icon"></i>
+                                                    <div class="icon-glow"></div>
+                                                </div>
+                                                <div class="skill-details">
+                                                    <div class="skill-header">
+                                                        <span class="skill-name">Banco de Dados</span>
+                                                        <span class="level-number">90%</span>
+                                                    </div>
+                                                    <div class="skill-progress-wrapper">
+                                                        <div class="skill-progress">
+                                                            <div class="progress-bar" data-progress="90">
+                                                                <div class="progress-glow"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="skill-tags">
+                                                        <span>MongoDB</span>
+                                                        <span>PostgreSQL</span>
+                                                        <span>Oracle</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <span class="level-number">80%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="skill-tags">
-                                    <span>Laravel</span>
-                                    <span>WordPress</span>
-                                    <span>API REST</span>
-                                </div>
+                                <!-- Repita para outras skills -->
                             </div>
-                            <div class="skill-card">
-                                <div class="skill-info">
-                                    <i class="fab fa-java skill-icon"></i>
-                                    <div class="skill-details">
-                                        <span class="skill-name">Java</span>
-                                        <div class="skill-level">
-                                            <div class="skill-progress">
-                                                <div class="progress-bar" style="width: 80%">
-                                                    <span class="progress-glow"></span>
-                                                </div>
-                                            </div>
-                                            <span class="level-number">80%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="skill-tags">
-                                    <span>SpringBoot</span>
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                            </div>
+                        </div>
 
             </section>
 
@@ -973,26 +1224,37 @@
 
             <!-- Nova seção de serviços -->
             <section class="tech-solutions-hub" id="servicesSection">
-                <h2 class="section-title gradient-purple">Soluções Tecnológicas</h2>
+                <div class="section-header">
+                    <h2 class="section-title gradient-purple">
+                        <span class="title-accent">⟨</span> 
+                        Soluções Tecnológicas 
+                        <span class="title-accent">⟩</span>
+                    </h2>
+                    <div class="title-underline"></div>
+                </div>
                 
                 <div class="solutions-grid">
                     <!-- Card 1 -->
-                    <div class="solution-card" data-tilt data-tilt-max="5">
+                    <div class="solution-card" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.3">
                         <div class="card-inner">
-                            <div class="service-icon">
-                                <i class="fas fa-code"></i>
+                            <div class="service-icon-wrapper">
+                                <div class="service-icon">
+                                    <i class="fas fa-code"></i>
+                                </div>
                                 <div class="tech-orbit">
+                                    <div class="orbit-line"></div>
                                     <span class="tech-pill">React</span>
                                     <span class="tech-pill">Vue.js</span>
                                     <span class="tech-pill">Angular</span>
                                 </div>
                             </div>
-                            <h3>Design de Interfaces</h3>
+                            <h3 class="service-title">Design de Interfaces</h3>
                             <ul class="service-features">
-                                <li>Criação de Layouts Atraentes</li>
-                                <li>Experiência do Usuário (UX)</li>
-                                <li>Prototipagem Rápida</li>
-                                <li>Otimização para Dispositivos Móveis</li>
+                                <li><i class="fas fa-check-circle"></i>Criação de Layouts Atraentes</li>
+                                <li><i class="fas fa-check-circle"></i>Experiência do Usuário (UX)</li>
+                                <li><i class="fas fa-check-circle"></i>Prototipagem Rápida</li>
+                                <li><i class="fas fa-check-circle"></i>Otimização para Dispositivos Móveis</li>
+                                <br>
                             </ul>
                             <div class="tech-specs">
                                 <span>Design Responsivo</span>
@@ -1000,25 +1262,32 @@
                                 <span>Testes de Usabilidade</span>
                             </div>
                         </div>
+                        <div class="card-glow"></div>
                     </div>
 
                     <!-- Card 2 -->
-                    <div class="solution-card" data-tilt data-tilt-max="5">
+                    <div class="solution-card" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.3">
                         <div class="card-inner">
-                            <div class="service-icon">
-                                <i class="fas fa-paint-brush"></i>
+                            <div class="service-icon-wrapper">
+                                <div class="service-icon">
+                                    <i class="fas fa-paint-brush"></i>
+                                </div>
                                 <div class="tech-orbit">
+                                    <div class="orbit-line"></div>
                                     <span class="tech-pill">Figma</span>
                                     <span class="tech-pill">Adobe XD</span>
                                     <span class="tech-pill">Sketch</span>
                                 </div>
                             </div>
-                            <h3>Codificação</h3>
+                            <h3 class="service-title">Codificação Estruturada</h3>
                             <ul class="service-features">
-                                <li>Frontend</li>
-                                <li>Backend</li>
-                                <li>Modelagem de Dados</li>
-                                <li>Dev Ops</li>
+                                <li><i class="fas fa-check-circle"></i>Frontend</li>
+                                <li><i class="fas fa-check-circle"></i>Backend</li>
+                                <li><i class="fas fa-check-circle"></i>Clean Code</li>
+                                <li><i class="fas fa-check-circle"></i>Arquitetura</li>
+                                <li><i class="fas fa-check-circle"></i>Modelagem de Dados</li>
+                                <li><i class="fas fa-check-circle"></i>Dev Ops</li>
+                                <br>
                             </ul>
                             <div class="tech-specs">
                                 <span>Node.js</span>
@@ -1026,25 +1295,29 @@
                                 <span>Data</span>
                             </div>
                         </div>
+                        <div class="card-glow"></div>
                     </div>
 
                     <!-- Card 3 -->
-                    <div class="solution-card" data-tilt data-tilt-max="5">
+                    <div class="solution-card" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.3">
                         <div class="card-inner">
-                            <div class="service-icon">
-                                <i class="fas fa-laptop-code"></i>
+                            <div class="service-icon-wrapper">
+                                <div class="service-icon">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
                                 <div class="tech-orbit">
+                                    <div class="orbit-line"></div>
                                     <span class="tech-pill">HTML</span>
                                     <span class="tech-pill">CSS</span>
                                     <span class="tech-pill">JavaScript</span>
                                 </div>
                             </div>
-                            <h3>Desenvolvimento de Sites</h3>
+                            <h3 class="service-title">Desenvolvimento de Sites</h3>
                             <ul class="service-features">
-                                <li>Sites Institucionais</li>
-                                <li>Landing Pages Otimizadas</li>
-                                <li>Blogs e Portfólios</li>
-                                <li>Integração com Redes Sociais</li>
+                                <li><i class="fas fa-check-circle"></i>Sites Institucionais</li>
+                                <li><i class="fas fa-check-circle"></i>Landing Pages Otimizadas</li>
+                                <li><i class="fas fa-check-circle"></i>Blogs e Portfólios</li>
+                                <li><i class="fas fa-check-circle"></i>Integração com Redes Sociais</li>
                             </ul>
                             <div class="tech-specs">
                                 <span>SEO Básico</span>
@@ -1052,6 +1325,7 @@
                                 <span>Manutenção de Sites</span>
                             </div>
                         </div>
+                        <div class="card-glow"></div>
                     </div>                
                 </div>
             </section>

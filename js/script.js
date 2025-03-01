@@ -1274,7 +1274,11 @@ const initServiceCards = () => {
             max: 5,
             speed: 400,
             glare: true,
-            "max-glare": 0.2,
+            "max-glare": 0.3,
+            scale: 1.02,
+            transition: true,
+            easing: "cubic-bezier(.03,.98,.52,.99)",
+            perspective: 1000
         });
     }
 
@@ -1288,6 +1292,8 @@ const initServiceCards = () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('card-visible');
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
                 serviceObserver.unobserve(entry.target); // Desregistra após animar
             }
         });
@@ -1295,7 +1301,8 @@ const initServiceCards = () => {
 
     // Aplicar animações aos cards
     document.querySelectorAll('.solution-card').forEach((card, index) => {
-        card.style.transitionDelay = `${index * 100}ms`;
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
         serviceObserver.observe(card);
     });
 
@@ -1591,49 +1598,60 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Inicialização do Tilt
-    VanillaTilt.init(document.querySelectorAll(".profile-card, .skills-section"), {
+    // Inicializar Vanilla Tilt
+    VanillaTilt.init(document.querySelectorAll(".skill-card"), {
         max: 5,
         speed: 400,
         glare: true,
-        "max-glare": 0.2
+        "max-glare": 0.2,
+        scale: 1.02
     });
 
-    // Animação dos números
-    const stats = document.querySelectorAll('.stat-number');
-    stats.forEach(stat => {
-        const target = parseInt(stat.getAttribute('data-count'));
-        let current = 0;
-        const increment = target / 50;
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                stat.textContent = target;
-                clearInterval(timer);
-            } else {
-                stat.textContent = Math.floor(current);
-            }
-        }, 40);
-    });
+    // Sistema de Tabs
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const skillContents = document.querySelectorAll('.skill-content');
 
-    // Tabs de habilidades
-    const tabs = document.querySelectorAll('.tab-btn');
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            // Remove active class from all tabs
-            tabs.forEach(t => t.classList.remove('active'));
-            // Add active class to clicked tab
-            tab.classList.add('active');
-            
-            // Hide all content
-            document.querySelectorAll('.skill-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            // Show selected content
-            const contentId = tab.getAttribute('data-tab');
-            document.getElementById(contentId).classList.add('active');
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            skillContents.forEach(content => content.classList.remove('active'));
+
+            button.classList.add('active');
+            const tabId = button.getAttribute('data-tab');
+            document.getElementById(tabId).classList.add('active');
         });
     });
+
+    // Animação das barras de progresso
+    function animateProgressBars() {
+        const progressBars = document.querySelectorAll('.progress-bar');
+        
+        progressBars.forEach(bar => {
+            const progress = bar.getAttribute('data-progress');
+            bar.style.width = '0%';
+            
+            setTimeout(() => {
+                bar.style.width = progress + '%';
+            }, 300);
+        });
+    }
+
+    // Observer para iniciar animação quando visível
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateProgressBars();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.skill-content').forEach(content => {
+        observer.observe(content);
+    });
+
+    // Iniciar animação inicial
+    animateProgressBars();
 });
 
 document.addEventListener('DOMContentLoaded', function() {
