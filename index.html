@@ -1,0 +1,1794 @@
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro Viena | Web Developer Full Stack</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+    <script src="js/atomic-tech.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <link rel="icon" type="image/jpeg" href="images/favicon.jpg">
+    <link rel="shortcut icon" type="image/jpeg" href="images/favicon.jpg">
+    <link rel="apple-touch-icon" href="images/favicon.jpg">
+
+    <style>
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 colunas em telas grandes */
+            gap: 20px; /* Espaçamento entre os cards */
+        }
+
+        @media (max-width: 768px) {
+            .case-studies-grid {
+                grid-template-columns: 1fr; /* 1 coluna em telas menores */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .case-studies-grid {
+                grid-template-columns: 1fr; /* 1 coluna em telas muito pequenas */
+            }
+        }
+
+        .case-study-card {
+            padding: 20px; /* Adiciona espaço interno */
+            background-color: transparent; /* Remove o fundo branco */
+            box-shadow: none; /* Remove a sombra */
+            display: flex;
+            flex-direction: column; /* Alinha os elementos verticalmente */
+        }
+
+        .case-info {
+            margin-top: 15px; /* Espaço entre a pré-visualização e as informações */
+            flex-grow: 1; /* Permite que a seção de informações cresça */
+        }
+
+        .case-actions {
+            margin-top: 10px; /* Espaço entre as características e os botões */
+            display: flex;
+            justify-content: space-between; /* Distribui os botões uniformemente */
+        }
+
+        .faq-section {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background: rgba(107, 70, 193, 0.1);
+        }
+
+        .faq-question h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: white;
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            color: var(--purple);
+        }
+
+        .faq-answer {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 1rem;
+            max-height: 500px;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .info-hub-x291 {
+            padding: 4rem 2rem;
+        }
+
+        .info-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            color: var(--purple);
+            margin-bottom: 1.5rem;
+            background: rgba(107, 70, 193, 0.1);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .card-content h3 {
+            color: white;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+        }
+
+        /* Timeline Blocks */
+        .timeline-blocks {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .time {
+            min-width: 100px;
+            color: var(--purple);
+            font-weight: bold;
+        }
+
+        .project-type {
+            flex: 1;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            margin-top: 0.5rem;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--purple);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        /* Tech Orbit */
+        .tech-orbit {
+            position: relative;
+            padding: 1rem;
+        }
+
+        .tech-cluster {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .tech-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-5px);
+            background: rgba(107, 70, 193, 0.1);
+        }
+
+        .tech-item i {
+            font-size: 2rem;
+            color: var(--purple);
+        }
+
+        /* Payment Features */
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .payment-feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .payment-feature:hover {
+            transform: translateX(10px);
+            background: rgba(107, 70, 193, 0.1);
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--purple);
+            border-radius: 10px;
+            color: white;
+        }
+
+        .feature-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-info strong {
+            color: white;
+        }
+
+        .feature-info span {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .about-me {
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Profile Card Styles */
+        .profile-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(107, 70, 193, 0.2);
+        }
+
+        .profile-header {
+            position: relative;
+        }
+
+        .profile-image-wrapper {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .profile-image {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 3px solid var(--purple);
+        }
+
+        .profile-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(107, 70, 193, 0.2), transparent);
+            transition: all 0.3s ease;
+        }
+
+        .profile-image:hover .profile-overlay {
+            background: linear-gradient(45deg, rgba(107, 70, 193, 0.4), transparent);
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .profile-image:hover .profile-pic {
+            transform: scale(1.05);
+        }
+
+        .experience-badge {
+            position: absolute;
+            right: -20px;
+            bottom: -20px;
+            background: var(--purple);
+            padding: 1rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(107, 70, 193, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .experience-badge:hover {
+            transform: translateY(-5px);
+        }
+
+        .experience-badge .years {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: block;
+            color: white;
+        }
+
+        .experience-badge .text {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .profile-status {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 1rem;
+        }
+
+        .status-indicator {
+            position: relative;
+            width: 12px;
+            height: 12px;
+        }
+
+        .status-dot {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #22c55e; /* Cor verde para disponível */
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .status-ring {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(34, 197, 94, 0.2); /* Cor verde com transparência */
+            animation: ring 2s infinite;
+        }
+
+        .status-text {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+            }
+        }
+
+        @keyframes ring {
+            0% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            70% {
+                transform: scale(2);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Hover effect */
+        .profile-status:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .profile-status {
+                padding: 0.5rem 1rem;
+            }
+            
+            .status-text {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Tech Tags */
+        .tech-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(107, 70, 193, 0.1);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--purple);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            background: rgba(107, 70, 193, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .tech-tag i {
+            font-size: 1rem;
+        }
+
+        /* Stats Section */
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: rgba(107, 70, 193, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--purple);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Skills Section */
+        .skills-section {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .skills-header {
+            margin-bottom: 2rem;
+        }
+
+        .skill-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn:hover {
+            background: rgba(107, 70, 193, 0.1);
+        }
+
+        .tab-btn.active {
+            background: var(--purple);
+            transform: translateY(-2px);
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateX(10px);
+            background: rgba(107, 70, 193, 0.1);
+        }
+
+        .skill-info {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            color: var(--purple);
+        }
+
+        .skill-details {
+            flex: 1;
+        }
+
+        .skill-name {
+            font-size: 1.1rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-progress {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--purple), #9c7af0);
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .progress-glow {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3));
+            animation: progressGlow 2s infinite;
+        }
+
+        /* Animations */
+        @keyframes progressGlow {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(500%); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .profile-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .skill-tabs {
+                flex-direction: column;
+            }
+            
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <!-- Adicionar tela de carregamento -->
+    <div id="loading-screen">
+        <div class="loader-content">
+            <div class="loader-brand">
+                <img src="images/logo.png" alt="Logo" class="loader-logo">
+                <div class="loader-line"></div>
+            </div>
+            
+            <div class="loader-animation">
+                <div class="circle-loader">
+                    <svg class="loader-svg" viewBox="0 0 100 100">
+                        <circle class="loader-circle-bg" cx="50" cy="50" r="40"/>
+                        <circle class="loader-circle" cx="50" cy="50" r="40"/>
+                    </svg>
+                    <div class="percentage">100%</div>
+                </div>
+            </div>
+
+            <div class="loading-status">
+                <div class="status-text">
+                    <span class="status-message">Inicializando</span>
+                    <div class="status-dots">
+                        <span class="dot">.</span>
+                        <span class="dot">.</span>
+                        <span class="dot">.</span>
+                    </div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrapper para conteúdo principal -->
+    <div id="main-content" style="opacity: 0;">
+        <canvas id="particleCanvas"></canvas>
+
+        <div class="background-elements">
+            <div class="cosmic-background">
+                <div class="stars"></div>
+                <div class="twinkling"></div>
+            </div>
+        </div>
+
+        <div class="container">
+
+            
+            <section class="hero">
+                <div class="hero-particles"></div>
+                
+                <!-- Adicionando as linhas geométricas animadas -->
+                <div class="geometric-lines">
+                    <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <path class="line-path" d="M10,90 L90,10"/>
+                        <path class="line-path" d="M20,90 L90,20"/>
+                        <path class="line-path" d="M30,90 L90,30"/>
+                    </svg>
+                </div>
+                <div class="hero-content">
+                    <img src="images/logo.png" alt="Logo" class="logo">
+                    <p class="subtitle gradient-purple">Seja bem-vindo ao meu Portfólio!</p>
+                    <div class="typing-wrapper">
+                        <h1 id="mainTitle" class="gradient-purple" style="margin-bottom: 0.5rem;">
+                            <span class="typing-text">Mais do que código</span>
+                            <span class="cursor"></span>
+                        </h1>
+                    </div>
+
+                    <h2 style="margin-top: 0; margin-bottom: 0;">
+                        Entrego resultados.
+                    </h2>
+
+                    <div class="tech-stack-showcase">
+                        <div class="tech-icon">
+                            <i class="fab fa-react"></i>
+                            <span class="tech-tooltip">React</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fab fa-node"></i>
+                            <span class="tech-tooltip">Node.js</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fab fa-aws"></i>
+                            <span class="tech-tooltip">AWS</span>
+                        </div>
+                    </div>
+
+                    <p class="description glow-effect animate-fade-in" style="text-align: center; margin: 0.5rem auto 2rem; width: 100%; display: block;">
+                        Seja para <span class="highlight">sites modernos</span>, 
+                        <span class="highlight">SaaS inovadores</span> ou 
+                        <span class="highlight">sistemas personalizados</span>,
+                        <strong class="emphasis-text"><br>eu cuido de tudo</strong> – 
+                        do back-end poderoso ao front-end impactante.
+                    </p>
+                    <div class="scroll-indicator">
+                        <div class="mouse">
+                            <div class="wheel"></div>
+                        </div>
+                        <div class="arrow-scroll">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about-me">
+                <h2 class="section-title gradient-purple">Sobre Mim</h2>
+                
+                <div class="about-container">
+                    <!-- Card do Perfil Aprimorado -->
+                    <div class="profile-card" data-tilt data-tilt-max="5">
+                        <div class="profile-header">
+                            <div class="profile-image-wrapper">
+                                <div class="profile-image">
+                                    <img src="images/profile.jpg" alt="Pedro Viena" class="profile-pic">
+                                    <div class="profile-overlay"></div>
+                                    <div class="experience-badge">
+                                    </div>
+                                </div>
+                                <div class="profile-status">
+                                    <div class="status-indicator">
+                                        <span class="status-dot"></span>
+                                        <span class="status-ring"></span>
+                                    </div>
+                                    <span class="status-text">Disponível para projetos</span>
+                                </div>
+                            </div>
+                            <div class="profile-info">
+                                <h3 class="gradient-text">Pedro Viena</h3>
+                                <div class="role-wrapper">
+                                    <p class="role">Desenvolvedor Full Stack</p>
+                                    <div class="tech-tags">
+                                        <span class="tech-tag"><i class="fab fa-wordpress"></i> Wordpress</span>
+                                        <span class="tech-tag"><i class="fab fa-node-js"></i> Node.js</span>
+                                        <span class="tech-tag"><i class="fab fa-java"></i> Java</span>
+                                    </div>
+                                </div>
+                                <p class="description">
+                                    Olá! Sou um desenvolvedor Full Stack apaixonado por criar soluções digitais inovadoras. Com mais de 5 anos de experiência, especializo-me em transformar ideias complexas em aplicações web intuitivas e de alto desempenho.
+                                </p>
+                                <div class="profile-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-number" data-count="50">400</span>
+                                        <span class="stat-label">Projetos<br>Entregues</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number" data-count="100">350</span>
+                                        <span class="stat-label">Clientes<br>Satisfeitos</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number" data-count="5">6</span>
+                                        <span class="stat-label">Anos de<br>Experiência</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                        <div class="skill-content active" id="frontend">
+                            <div class="skill-card">
+                                <div class="skill-info">
+                                    <i class="fab fa-react skill-icon"></i>
+                                    <div class="skill-details">
+                                        <span class="skill-name">React</span>
+                                        <div class="skill-level">
+                                            <div class="skill-progress">
+                                                <div class="progress-bar" style="width: 90%">
+                                                    <span class="progress-glow"></span>
+                                                </div>
+                                            </div>
+                                            <span class="level-number">90%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skill-tags">
+                                    <span>Next.js</span>
+                                    <span>Redux</span>
+                                    <span>Hooks</span>
+                                </div>
+                            </div>
+
+                            <div class="skill-card">
+                                <div class="skill-info">
+                                    <i class="fab fa-js-square skill-icon"></i>
+                                    <div class="skill-details">
+                                        <span class="skill-name">JavaScript</span>
+                                        <div class="skill-level">
+                                            <div class="skill-progress">
+                                                <div class="progress-bar" style="width: 95%">
+                                                    <span class="progress-glow"></span>
+                                                </div>
+                                            </div>
+                                            <span class="level-number">95%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skill-tags">
+                                    <span>ES6+</span>
+                                    <span>TypeScript</span>
+                                    <span>jQuery</span>
+                                </div>
+                            </div>
+
+                            
+
+                        <div class="skill-content" id="backend">
+                            <div class="skill-card">
+                                <div class="skill-info">
+                                    <i class="fab fa-node-js skill-icon"></i>
+                                    <div class="skill-details">
+                                        <span class="skill-name">Node.js</span>
+                                        <div class="skill-level">
+                                            <div class="skill-progress">
+                                                <div class="progress-bar" style="width: 90%">
+                                                    <span class="progress-glow"></span>
+                                                </div>
+                                            </div>
+                                            <span class="level-number">90%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skill-tags">
+                                    <span>Express</span>
+                                    <span>NestJS</span>
+                                    <span>GraphQL</span>
+                                </div>
+                            </div>
+
+                            <div class="skill-card">
+                                <div class="skill-info">
+                                    <i class="fas fa-database skill-icon"></i>
+                                    <div class="skill-details">
+                                        <span class="skill-name">Bancos de Dados</span>
+                                        <div class="skill-level">
+                                            <div class="skill-progress">
+                                                <div class="progress-bar" style="width: 85%">
+                                                    <span class="progress-glow"></span>
+                                                </div>
+                                            </div>
+                                            <span class="level-number">85%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skill-tags">
+                                    <span>MongoDB</span>
+                                    <span>PostgreSQL</span>
+                                    <span>Redis</span>
+                                </div>
+                            </div>
+
+                            <div class="skill-card">
+                                <div class="skill-info">
+                                    <i class="fab fa-php skill-icon"></i>
+                                    <div class="skill-details">
+                                        <span class="skill-name">PHP</span>
+                                        <div class="skill-level">
+                                            <div class="skill-progress">
+                                                <div class="progress-bar" style="width: 80%">
+                                                    <span class="progress-glow"></span>
+                                                </div>
+                                            </div>
+                                            <span class="level-number">80%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skill-tags">
+                                    <span>Laravel</span>
+                                    <span>WordPress</span>
+                                    <span>API REST</span>
+                                </div>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-info">
+                                    <i class="fab fa-java skill-icon"></i>
+                                    <div class="skill-details">
+                                        <span class="skill-name">Java</span>
+                                        <div class="skill-level">
+                                            <div class="skill-progress">
+                                                <div class="progress-bar" style="width: 80%">
+                                                    <span class="progress-glow"></span>
+                                                </div>
+                                            </div>
+                                            <span class="level-number">80%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skill-tags">
+                                    <span>SpringBoot</span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+
+            </section>
+
+
+            <section class="interactive-journey">
+                <h2 class="section-title gradient-purple">Soluções web e sistemas de alto desempenho</h2>
+                
+                <div class="journey-container">
+                    <div class="journey-visualization">
+                        <div class="constellation-container">
+                            <!-- Os elementos serão criados dinamicamente pelo JavaScript -->
+                        </div>
+                    </div>                            
+                </div>
+            </section>
+            
+
+            <!-- Nova seção de serviços -->
+            <section class="tech-solutions-hub" id="servicesSection">
+                <h2 class="section-title gradient-purple">Soluções Tecnológicas</h2>
+                
+                <div class="solutions-grid">
+                    <!-- Card 1 -->
+                    <div class="solution-card" data-tilt data-tilt-max="5">
+                        <div class="card-inner">
+                            <div class="service-icon">
+                                <i class="fas fa-code"></i>
+                                <div class="tech-orbit">
+                                    <span class="tech-pill">React</span>
+                                    <span class="tech-pill">Vue.js</span>
+                                    <span class="tech-pill">Angular</span>
+                                </div>
+                            </div>
+                            <h3>Design de Interfaces</h3>
+                            <ul class="service-features">
+                                <li>Criação de Layouts Atraentes</li>
+                                <li>Experiência do Usuário (UX)</li>
+                                <li>Prototipagem Rápida</li>
+                                <li>Otimização para Dispositivos Móveis</li>
+                            </ul>
+                            <div class="tech-specs">
+                                <span>Design Responsivo</span>
+                                <span>Wireframing</span>
+                                <span>Testes de Usabilidade</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="solution-card" data-tilt data-tilt-max="5">
+                        <div class="card-inner">
+                            <div class="service-icon">
+                                <i class="fas fa-paint-brush"></i>
+                                <div class="tech-orbit">
+                                    <span class="tech-pill">Figma</span>
+                                    <span class="tech-pill">Adobe XD</span>
+                                    <span class="tech-pill">Sketch</span>
+                                </div>
+                            </div>
+                            <h3>Codificação</h3>
+                            <ul class="service-features">
+                                <li>Frontend</li>
+                                <li>Backend</li>
+                                <li>Modelagem de Dados</li>
+                                <li>Dev Ops</li>
+                            </ul>
+                            <div class="tech-specs">
+                                <span>Node.js</span>
+                                <span>Hospedagem</span>
+                                <span>Data</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="solution-card" data-tilt data-tilt-max="5">
+                        <div class="card-inner">
+                            <div class="service-icon">
+                                <i class="fas fa-laptop-code"></i>
+                                <div class="tech-orbit">
+                                    <span class="tech-pill">HTML</span>
+                                    <span class="tech-pill">CSS</span>
+                                    <span class="tech-pill">JavaScript</span>
+                                </div>
+                            </div>
+                            <h3>Desenvolvimento de Sites</h3>
+                            <ul class="service-features">
+                                <li>Sites Institucionais</li>
+                                <li>Landing Pages Otimizadas</li>
+                                <li>Blogs e Portfólios</li>
+                                <li>Integração com Redes Sociais</li>
+                            </ul>
+                            <div class="tech-specs">
+                                <span>SEO Básico</span>
+                                <span>Otimização de Performance</span>
+                                <span>Manutenção de Sites</span>
+                            </div>
+                        </div>
+                    </div>                
+                </div>
+            </section>
+
+            <!-- Seção de Depoimentos -->
+  
+
+            <!-- Seção de Portfólio -->
+            <section class="portfolio" style="background: transparent;">
+                <h2 class="section-title gradient-purple">Portfólio</h2>
+                
+                <div class="portfolio-grid" style="background: transparent;">
+                    <!-- Projeto 1 - Hotel -->
+                    <div class="portfolio-item" data-category="web" data-tech="react" data-year="2024">
+                        <div class="portfolio-card">
+                            <div class="portfolio-image">
+                                <img src="images/cover-hotel.png" alt="Hotel Website">
+                                <div class="portfolio-overlay">
+                                    <div class="tech-stack">
+                                        <span>React</span>
+                                        <span>Next.js</span>
+                                        <span>Tailwind</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portfolio-info">
+                                <h3>Hotel Website</h3>
+                                <p>Site moderno para hotel com reservas</p>
+                                <div class="portfolio-actions">
+                                    <a href="https://hoteleiro-five.vercel.app/" target="_blank" class="btn-demo">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        Ver Site
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Projeto 2 - Restaurante -->
+                    <div class="portfolio-item" data-category="web" data-tech="react" data-year="2024">
+                        <div class="portfolio-card">
+                            <div class="portfolio-image">
+                                <img src="images/cover-restaurante.png" alt="Restaurante Website">
+                                <div class="portfolio-overlay">
+                                    <div class="tech-stack">
+                                        <span>React</span>
+                                        <span>Next.js</span>
+                                        <span>Styled Components</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portfolio-info">
+                                <h3>Restaurante Gourmet</h3>
+                                <p>Website elegante com cardápio digital</p>
+                                <div class="portfolio-actions">
+                                    <a href="https://restaurante-one-ecru.vercel.app/" target="_blank" class="btn-demo">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        Ver Site
+                                    </a>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+
+                    <!-- Projeto 3 - Clínica -->
+                    <div class="portfolio-item" data-category="web" data-tech="react" data-year="2024">
+                        <div class="portfolio-card">
+                            <div class="portfolio-image">
+                                <img src="images/cover-clinica.png" alt="Clínica Website">
+                                <div class="portfolio-overlay">
+                                    <div class="tech-stack">
+                                        <span>React</span>
+                                        <span>Material UI</span>
+                                        <span>Node.js</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portfolio-info">
+                                <h3>Clínica Médica</h3>
+                                <p>Portal médico com agendamento online</p>
+                                <div class="portfolio-actions">
+                                    <a href="https://clinica-henna.vercel.app/" target="_blank" class="btn-demo">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        Ver Site
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 4 - Barbearia -->
+                    <div class="portfolio-item" data-category="web" data-tech="react" data-year="2024">
+                        <div class="portfolio-card">
+                            <div class="portfolio-image">
+                                <img src="images/cover-barbearia.png" alt="Barbearia Website">
+                                <div class="portfolio-overlay">
+                                    <div class="tech-stack">
+                                        <span>React</span>
+                                        <span>Tailwind</span>
+                                        <span>Firebase</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portfolio-info">
+                                <h3>Barbearia Premium</h3>
+                                <p>Site moderno com sistema de agendamento</p>
+                                <div class="portfolio-actions">
+                                    <a href="https://barbearia-one-mu.vercel.app/" target="_blank" class="btn-demo">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        Ver Site
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 5 - Pet Arte -->
+                    <div class="portfolio-item" data-category="web" data-tech="wordpress" data-year="2023">
+                        <div class="portfolio-card">
+                            <div class="portfolio-image">
+                                <img src="images/cover-petarte.png" alt="Pet Arte Website">
+                                <div class="portfolio-overlay">
+                                    <div class="tech-stack">
+                                        <span>WordPress</span>
+                                        <span>WooCommerce</span>
+                                        <span>PHP</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portfolio-info">
+                                <h3>Clínica Pet Arte</h3>
+                                <p>Site institucional para clínica veterinária</p>
+                                <div class="portfolio-actions">
+                                    <a href="https://clinicapetart.com.br/" target="_blank" class="btn-demo">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        Ver Site
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 6 - FLDA -->
+                    <div class="portfolio-item" data-category="web" data-tech="wordpress" data-year="2023">
+                        <div class="portfolio-card">
+                            <div class="portfolio-image">
+                                <img src="images/cover-flda.png" alt="FLDA Website">
+                                <div class="portfolio-overlay">
+                                    <div class="tech-stack">
+                                        <span>WordPress</span>
+                                        <span>Elementor</span>
+                                        <span>PHP</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portfolio-info">
+                                <h3>Método FLDA</h3>
+                                <p>Portal educacional com área de membros</p>
+                                <div class="portfolio-actions">
+                                    <a href="https://gabileitemetodoflda.com.br/flda/" target="_blank" class="btn-demo">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        Ver Site
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 7 - Corretor -->
+                    <div class="portfolio-item" data-category="web" data-tech="react" data-year="2024">
+                        <div class="portfolio-card">
+                            <div class="portfolio-image">
+                                <img src="images/cover-corretor.png" alt="Corretor Website">
+                                <div class="portfolio-overlay">
+                                    <div class="tech-stack">
+                                        <span>React</span>
+                                        <span>Next.js</span>
+                                        <span>Tailwind</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portfolio-info">
+                                <h3>Portal Imobiliário</h3>
+                                <p>Site para corretora de imóveis</p>
+                                <div class="portfolio-actions">
+                                    <a href="https://corretora-murex.vercel.app/" target="_blank" class="btn-demo">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        Ver Site
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="web" data-tech="react" data-year="2024">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <img src="images/cover-attus.png" alt="Corretor Website">
+                            <div class="portfolio-overlay">
+                                <div class="tech-stack">
+                                    <span>React</span>
+                                    <span>Next.js</span>
+                                    <span>Tailwind</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h3>Site de Marketing</h3>
+                            <p>Site para Attus Comunicação</p>
+                            <div class="portfolio-actions">
+                                <a href="https://attuscomunicacao.com.br/" target="_blank" class="btn-demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Ver Site
+                                </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                    <!-- Projeto 8 - Impla -->
+                    <div class="portfolio-item" data-category="web" data-tech="wordpress" data-year="2023">
+                        <div class="portfolio-card">
+                            <div class="portfolio-image">
+                                <img src="images/cover-impla.png" alt="Impla Website">
+                                <div class="portfolio-overlay">
+                                    <div class="tech-stack">
+                                        <span>WordPress</span>
+                                        <span>Elementor</span>
+                                        <span>PHP</span>
+                    </div>
+                                </div>
+                            </div>
+                            <div class="portfolio-info">
+                                <h3>Impla Clínica</h3>
+                                <p>Site institucional para clínica odontológica</p>
+                                <div class="portfolio-actions">
+                                    <a href="https://implaclinica.com.br/" target="_blank" class="btn-demo">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        Ver Site
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item" data-category="web" data-tech="wordpress" data-year="2023">
+                        <div class="portfolio-card">
+                            <div class="portfolio-image">
+                                <img src="images/cover-dashboard.png" alt="Dashboard financeiro">
+                                <div class="portfolio-overlay">
+                                    <div class="tech-stack">
+                                        <span>WordPress</span>
+                                        <span>Elementor</span>
+                                        <span>PHP</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portfolio-info">
+                                <h3>Viena Finance</h3>
+                                <p>Sistema financeiro e de gestão</p>
+                                <div class="portfolio-actions">
+                                    <a href="https://vienafinanceapp.vercel.app/dashboard" target="_blank" class="btn-demo">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        Ver Site
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>               
+                </div>
+                                    
+            </section>
+
+            <section class="dev-journey-x291">
+                <h2 class="section-title gradient-purple">Processo de Desenvolvimento</h2>
+                
+                <div class="process-timeline-w482">
+                    <!-- Etapa 1 -->
+                    <div class="timeline-node-k129" data-tilt data-tilt-max="10">
+                        <div class="node-content-j391">
+                            <div class="node-icon-p981">
+                                <i class="fas fa-lightbulb"></i>
+                                <div class="pulse-ring-m281"></div>
+                            </div>
+                            <h3>Descoberta</h3>
+                            <p>Entendimento profundo das necessidades do projeto e objetivos do negócio</p>
+                            <ul class="process-details-l591">
+                                <li><i class="fas fa-check-circle"></i> Reunião de briefing</li>
+                                <li><i class="fas fa-check-circle"></i> Análise de requisitos</li>
+                                <li><i class="fas fa-check-circle"></i> Definição de escopo</li>
+                            </ul>
+                            <div class="tech-bubble-container-r781">
+                                <span class="tech-bubble-y651">Research</span>
+                                <span class="tech-bubble-y651">UX</span>
+                                <span class="tech-bubble-y651">Planning</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Etapa 2 -->
+                    <div class="timeline-node-k129" data-tilt data-tilt-max="10">
+                        <div class="node-content-j391">
+                            <div class="node-icon-p981">
+                                <i class="fas fa-pencil-ruler"></i>
+                                <div class="pulse-ring-m281"></div>
+                            </div>
+                            <h3>Design & Protótipo</h3>
+                            <p>Criação da interface e experiência do usuário</p>
+                            <ul class="process-details-l591">
+                                <li><i class="fas fa-check-circle"></i> Wireframes</li>
+                                <li><i class="fas fa-check-circle"></i> Design UI/UX</li>
+                                <li><i class="fas fa-check-circle"></i> Protótipo interativo</li>
+                            </ul>
+                            <div class="tech-bubble-container-r781">
+                                <span class="tech-bubble-y651">Figma</span>
+                                <span class="tech-bubble-y651">Adobe XD</span>
+                                <span class="tech-bubble-y651">Prototyping</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Etapa 3 -->
+                    <div class="timeline-node-k129" data-tilt data-tilt-max="10">
+                        <div class="node-content-j391">
+                            <div class="node-icon-p981">
+                                <i class="fas fa-code"></i>
+                                <div class="pulse-ring-m281"></div>
+                            </div>
+                            <h3>Desenvolvimento</h3>
+                            <p>Transformação do design em código funcional</p>
+                            <ul class="process-details-l591">
+                                <li><i class="fas fa-check-circle"></i> Codificação Frontend</li>
+                                <li><i class="fas fa-check-circle"></i> Desenvolvimento Backend</li>
+                                <li><i class="fas fa-check-circle"></i> Testes unitários</li>
+                            </ul>
+                            <div class="tech-bubble-container-r781">
+                                <span class="tech-bubble-y651">React</span>
+                                <span class="tech-bubble-y651">Node.js</span>
+                                <span class="tech-bubble-y651">Testing</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Etapa 4 -->
+                    <div class="timeline-node-k129" data-tilt data-tilt-max="10">
+                        <div class="node-content-j391">
+                            <div class="node-icon-p981">
+                                <i class="fas fa-rocket"></i>
+                                <div class="pulse-ring-m281"></div>
+                            </div>
+                            <h3>Lançamento</h3>
+                            <p>Deploy e otimização final do projeto</p>
+                            <ul class="process-details-l591">
+                                <li><i class="fas fa-check-circle"></i> Testes finais</li>
+                                <li><i class="fas fa-check-circle"></i> Deploy</li>
+                                <li><i class="fas fa-check-circle"></i> Monitoramento</li>
+                            </ul>
+                            <div class="tech-bubble-container-r781">
+                                <span class="tech-bubble-y651">DevOps</span>
+                                <span class="tech-bubble-y651">CI/CD</span>
+                                <span class="tech-bubble-y651">Analytics</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        <section class="info-hub-x291">
+            <h2 class="section-title gradient-purple">Informações Essenciais</h2>
+            
+            <div class="info-cards-grid">
+                <!-- Card 1: Prazos -->
+                <div class="info-card" data-tilt data-tilt-max="10">
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <i class="fas fa-clock-rotate-left"></i>
+                        </div>
+                        <h3>Prazos de Entrega</h3>
+                        <div class="payment-options">
+                            <div class="payment-feature">
+                                <div class="feature-icon">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                                <div class="feature-info">
+                                    <strong>Landing Pages</strong>
+                                    <span>até 5 dias</span>
+                                </div>
+                            </div>
+                            <div class="payment-feature">
+                                <div class="feature-icon">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <div class="feature-info">
+                                    <strong>Sites Institucionais</strong>
+                                    <span>até 12 dias</span>
+                                </div>
+                            </div>
+                            <div class="payment-feature">
+                                <div class="feature-icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <div class="feature-info">
+                                    <strong>E-commerce</strong>
+                                    <span>3-5 semanas</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Stack Tecnológico -->
+                <div class="info-card" data-tilt data-tilt-max="10">
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Stack Tecnológico</h3>
+                        <div class="payment-options">
+                            <div class="payment-feature">
+                                <div class="feature-icon">
+                                    <i class="fab fa-react"></i>
+                                </div>
+                                <div class="feature-info">
+                                    <strong>Frontend Moderno</strong>
+                                    <span>React, Next.js, Tailwind</span>
+                                </div>
+                            </div>
+                            <div class="payment-feature">
+                                <div class="feature-icon">
+                                    <i class="fab fa-node-js"></i>
+                                </div>
+                                <div class="feature-info">
+                                    <strong>Backend Robusto</strong>
+                                    <span>Node.js, Python, PHP</span>
+                                </div>
+                            </div>
+                            <div class="payment-feature">
+                                <div class="feature-icon">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <div class="feature-info">
+                                    <strong>Banco de Dados</strong>
+                                    <span>MongoDB, PostgreSQL</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Investimento -->
+                <div class="info-card" data-tilt data-tilt-max="10">
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <i class="fas fa-hand-holding-dollar"></i>
+                        </div>
+                        <h3>Investimento Flexível</h3>
+                        <div class="payment-options">
+                            <div class="payment-feature">
+                                <div class="feature-icon">
+                                    <i class="fas fa-credit-card"></i>
+                                </div>
+                                <div class="feature-info">
+                                    <strong>12x sem juros</strong>
+                                    <span>Parcele seu projeto</span>
+                                </div>
+                            </div>
+                            <div class="payment-feature">
+                                <div class="feature-icon">
+                                    <i class="fas fa-list-check"></i>
+                                </div>
+                                <div class="feature-info">
+                                    <strong>Pagamento por etapas</strong>
+                                    <span>Acompanhe o progresso</span>
+                                </div>
+                            </div>
+                            <div class="payment-feature">
+                                <div class="feature-icon">
+                                    <i class="fas fa-list-check"></i>
+                                </div>
+                                <div class="feature-info">
+                                    <strong>Garantia de 90 dias</strong>
+                                    <span>Suporte completo</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2 class="section-title gradient-purple">O que dizem sobre mim</h2>
+            
+            <div class="testimonials-container">
+                <div class="testimonials-wrapper">
+                    
+                    <div class="testimonials-slider">
+                        <!-- Depoimento 1 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <div class="client-info">
+                                    <div class="client-details">
+                                        <h3>Frederico</h3>
+                                        <p>Aprender Financeiro</p>
+                                    </div>
+                                </div>
+                                <div class="rating" data-rating="5">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <blockquote>
+                                "Me surpreendeu! Entregou dentro do prazo e com uma qualidade acima da que eu estava esperando, super recomendo!"
+                            </blockquote>
+                            <div class="project-info">
+                                <span class="project-tag">Projeto: Sistema de Gestão</span>
+                            </div>
+                        </div>
+
+                        <!-- Depoimento 2 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <div class="client-info">
+                                    <div class="client-details">
+                                        <h3>Gabi Santos</h3>
+                                        <p>Empresária</p>
+                                    </div>
+                                </div>
+                                <div class="rating" data-rating="5">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <blockquote>
+                                "Excelente profissional! Desenvolveu nossa loja virtual com atenção aos detalhes e foco na experiência do usuário."
+                            </blockquote>
+                            <div class="project-info">
+                                <span class="project-tag">Projeto: Loja Virtual</span>
+                            </div>
+                        </div>
+
+                        <!-- Depoimento 3 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <div class="client-info">
+                                    <div class="client-details">
+                                        <h3>Nathan</h3>
+                                        <p>Ceo, Attus</p>
+                                    </div>
+                                </div>
+                                <div class="rating" data-rating="5">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <blockquote>
+                                "A capacidade do Pedro de entender requisitos complexos e entregar soluções elegantes é notável."
+                            </blockquote>
+                            <div class="project-info">
+                                <span class="project-tag">Projeto: Site</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="testimonial-indicators">
+                    <span class="indicator active"></span>
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
+                </div>
+            </div>
+        </section>
+
+                   <!-- Seção CTA Final -->
+                   <section class="final-cta">
+                    <div class="cta-container">
+                        <div class="cta-content">
+                            <h2 class="gradient-purple">Pronto para transformar sua ideia em realidade?</h2>
+                            <p>Vamos criar algo incrível juntos? converse comigo agora!</p>
+                            
+                            <div class="cta-benefits">
+                                <div class="benefit-item">
+                                    <i class="fas fa-rocket"></i>
+                                    <span>Início rápido</span>
+                                        </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-code"></i>
+                                    <span>Código limpo</span>
+                                        </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Entrega pontual</span>
+                                    </div>
+                            </div>
+                    </div>
+                </section>
+
+    </div>
+
+    <script>
+        // Inicialização dos efeitos
+        document.addEventListener('DOMContentLoaded', function() {
+            // Efeito Tilt
+            VanillaTilt.init(document.querySelectorAll(".case-study-card, .solution-card"), {
+                max: 10,
+                speed: 400,
+                glare: true,
+                "max-glare": 0.3,
+                scale: 1.02
+            });
+
+            // Efeito de digitação
+            const typingText = document.querySelector('.typing-text');
+            if (typingText) {
+                const text = typingText.textContent;
+                typingText.innerHTML = '';
+                let i = 0;
+                function typeWriter() {
+                    if (i < text.length) {
+                        typingText.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 100);
+                    }
+                }
+                typeWriter();
+            }
+
+            // Efeito de contador para números
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000; // 2 segundos
+                const increment = target / (duration / 16); // 60fps
+                let current = 0;
+
+                function updateCounter() {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.round(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target;
+                    }
+                }
+
+                // Iniciar contador quando elemento estiver visível
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        updateCounter();
+                        observer.disconnect();
+                    }
+                });
+                observer.observe(counter);
+            });
+
+            // Efeito de scroll suave para links internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Animações de entrada com GSAP
+            gsap.registerPlugin(ScrollTrigger);
+            
+            gsap.from('.hero-content', {
+                duration: 1,
+                y: 50,
+                opacity: 0,
+                ease: 'power3.out'
+            });
+
+            gsap.from('.portfolio-card', {
+                scrollTrigger: {
+                    trigger: '.portfolio-card',
+                    start: 'top center+=100',
+                    toggleActions: 'play none none reverse'
+                },
+                duration: 0.8,
+                y: 50,
+                opacity: 0,
+                stagger: 0.2
+            });
+
+            // Inicialização do FAQ
+            const faqTriggers = document.querySelectorAll('.quantum-trigger-y651');
+            
+            faqTriggers.forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    const faqItem = trigger.parentElement;
+                    const content = faqItem.querySelector('.quantum-content-z923');
+                    const icon = trigger.querySelector('.pulse-icon-w482 i');
+                    
+                    // Toggle do item atual
+                    faqItem.classList.toggle('active');
+                    
+                    // Atualiza o ícone
+                    if (faqItem.classList.contains('active')) {
+                        icon.classList.remove('fa-plus');
+                        icon.classList.add('fa-minus');
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    } else {
+                        icon.classList.remove('fa-minus');
+                        icon.classList.add('fa-plus');
+                        content.style.maxHeight = null;
+                    }
+                    
+                    // Fecha outros itens abertos
+                    const otherItems = document.querySelectorAll('.quantum-item-l562.active');
+                    otherItems.forEach(item => {
+                        if (item !== faqItem) {
+                            item.classList.remove('active');
+                            const otherIcon = item.querySelector('.pulse-icon-w482 i');
+                            const otherContent = item.querySelector('.quantum-content-z923');
+                            otherIcon.classList.remove('fa-minus');
+                            otherIcon.classList.add('fa-plus');
+                            otherContent.style.maxHeight = null;
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
